@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>RabbitMQ Listener</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 1rem; }
+    ul { list-style: none; padding: 0; }
+    li { padding: .5rem; border-bottom: 1px solid #ddd; }
+  </style>
+</head>
+<body>
+  <h1>Повідомлення з черги</h1>
+  <ul id="messages"></ul>
+
+  <script>
+    const socket = io();
+    const ul = document.getElementById('messages');
+
+    socket.on('new_message', msg => {
+      const li = document.createElement('li');
+      li.textContent = msg;
+      ul.appendChild(li);
+    });
+  </script>
+</body>
+</html>
